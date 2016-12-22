@@ -71,14 +71,23 @@ public class Main {
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				list_auto.removeAll();
+				list_soci.removeAll();
+				list_noleggi.removeAll();
 				db.getAuto(a1);
 				System.out.println(a1);
+				for(int i=0;i<a1.size();i++){
+					list_auto.add(a1.get(i).getMarca() + " " + a1.get(i).getModello() );
+				}
 				db.getSoci(a2);
 				System.out.println(a2);
 			}
 		});
 		btnNewButton.setBounds(349, 10, 75, 25);
 		btnNewButton.setText("Refresh");
+		
+		List list_fill = new List(shell, SWT.BORDER);
+		list_fill.setBounds(114, 14, 71, 216);
 
 	}
 }
