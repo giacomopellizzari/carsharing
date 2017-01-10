@@ -50,7 +50,7 @@ public class Main {
 	 */
 	protected void createContents() {
 		shell = new Shell();
-		shell.setSize(450, 300);
+		shell.setSize(581, 530);
 		shell.setText("SWT Application");
 		
 		ArrayList<Auto> a1 = new ArrayList<Auto>(); 
@@ -80,14 +80,20 @@ public class Main {
 					list_auto.add(a1.get(i).getMarca() + " " + a1.get(i).getModello() );
 				}
 				db.getSoci(a2);
-				System.out.println(a2);
+				for(int i=0;i<a2.size();i++){
+					list_soci.add(a2.get(i).getCognome() + " " + a2.get(i).getNome() );
+				}
+				db.getNoleggi(a3);
+				for(int i=0;i<a3.size();i++){
+					list_noleggi.add(a3.get(i).getCodNoleggio());
+				}
 			}
 		});
 		btnNewButton.setBounds(349, 10, 75, 25);
 		btnNewButton.setText("Refresh");
 		
 		List list_fill = new List(shell, SWT.BORDER);
-		list_fill.setBounds(114, 14, 71, 216);
+		list_fill.setBounds(106, 11, 71, 216);
 
 	}
 }
