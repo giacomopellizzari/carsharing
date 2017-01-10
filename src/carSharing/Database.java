@@ -252,7 +252,7 @@ public class Database {
 						codNoleggio = rs.getString("codNoleggio");
 						dataFine = rs.getString("dataFine");
 						dataInizio = rs.getString("dataInizio");
-						restituita = rs.getBoolean("restituita")
+						restituita = rs.getBoolean("restituita");
 						a1.add(new Noleggi(codNoleggio,cf, auto, dataInizio, dataFine,dataInizio, restituita));
 					}
 				} catch (SQLException e1) {
