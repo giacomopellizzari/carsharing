@@ -10,10 +10,12 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
 
 public class Main {
 
-	protected Shell shell;
+	protected Shell shlCarsharing;
 
 	/**
 	 * Launch the application.
@@ -36,9 +38,9 @@ public class Main {
 		Display display = Display.getDefault();
 		createContents();
 		
-		shell.open();
-		shell.layout();
-		while (!shell.isDisposed()) {
+		shlCarsharing.open();
+		shlCarsharing.layout();
+		while (!shlCarsharing.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}
@@ -49,25 +51,25 @@ public class Main {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shell = new Shell();
-		shell.setSize(581, 530);
-		shell.setText("SWT Application");
+		shlCarsharing = new Shell();
+		shlCarsharing.setSize(581, 530);
+		shlCarsharing.setText("Carsharing");
 		
 		ArrayList<Auto> a1 = new ArrayList<Auto>(); 
 		ArrayList<Soci> a2 = new ArrayList<Soci>(); 
 		ArrayList<Noleggi> a3 = new ArrayList<Noleggi>(); 
 		Database db = new Database();
 		
-		List list_auto = new List(shell, SWT.BORDER);
-		list_auto.setBounds(10, 14, 71, 68);
+		List list_auto = new List(shlCarsharing, SWT.BORDER);
+		list_auto.setBounds(10, 39, 171, 68);
 		
-		List list_soci = new List(shell, SWT.BORDER);
-		list_soci.setBounds(10, 88, 71, 68);
+		List list_soci = new List(shlCarsharing, SWT.BORDER);
+		list_soci.setBounds(10, 153, 171, 68);
 		
-		List list_noleggi = new List(shell, SWT.BORDER);
-		list_noleggi.setBounds(10, 162, 71, 68);
+		List list_noleggi = new List(shlCarsharing, SWT.BORDER);
+		list_noleggi.setBounds(10, 265, 171, 68);
 		
-		Button btnNewButton = new Button(shell, SWT.NONE);
+		Button btnNewButton = new Button(shlCarsharing, SWT.NONE);
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -89,11 +91,40 @@ public class Main {
 				}
 			}
 		});
-		btnNewButton.setBounds(349, 10, 75, 25);
+		btnNewButton.setBounds(10, 441, 75, 25);
 		btnNewButton.setText("Refresh");
 		
-		List list_fill = new List(shell, SWT.BORDER);
-		list_fill.setBounds(106, 11, 71, 216);
+		List list_fill = new List(shlCarsharing, SWT.BORDER);
+		list_fill.setBounds(237, 39, 163, 222);
+		
+		Label lblNewLabel = new Label(shlCarsharing, SWT.NONE);
+		lblNewLabel.setBounds(69, 18, 55, 15);
+		lblNewLabel.setText("Auto");
+		
+		Label lblSoci = new Label(shlCarsharing, SWT.NONE);
+		lblSoci.setBounds(69, 130, 55, 15);
+		lblSoci.setText("Soci");
+		
+		Label lblNoleggi = new Label(shlCarsharing, SWT.NONE);
+		lblNoleggi.setBounds(69, 244, 55, 15);
+		lblNoleggi.setText("Noleggi");
+		
+		Label lblInformazioni = new Label(shlCarsharing, SWT.NONE);
+		lblInformazioni.setBounds(274, 18, 70, 15);
+		lblInformazioni.setText("Informazioni:");
+		
+		Button btnNew = new Button(shlCarsharing, SWT.NONE);
+		btnNew.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+				Noleggio noleggio = new Noleggio(Display.getDefault());
+				noleggio.open();
+				
+			}
+		});
+		btnNew.setBounds(435, 441, 120, 25);
+		btnNew.setText("Nuovo noleggio");
 
 	}
 }
