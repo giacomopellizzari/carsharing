@@ -70,6 +70,7 @@ public class Main {
 		list_noleggi.setBounds(10, 265, 171, 68);
 		
 		Button btnNewButton = new Button(shlCarsharing, SWT.NONE);
+		btnNewButton.setSelection(true);
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -113,8 +114,8 @@ public class Main {
 		lblInformazioni.setBounds(274, 18, 70, 15);
 		lblInformazioni.setText("Informazioni:");
 		
-		Button btnNew = new Button(shlCarsharing, SWT.NONE);
-		btnNew.addSelectionListener(new SelectionAdapter() {
+		Button btnNoleggio = new Button(shlCarsharing, SWT.NONE);
+		btnNoleggio.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
@@ -123,8 +124,19 @@ public class Main {
 				
 			}
 		});
-		btnNew.setBounds(435, 441, 120, 25);
-		btnNew.setText("Nuovo noleggio");
+		btnNoleggio.setBounds(290, 441, 120, 25);
+		btnNoleggio.setText("Nuovo noleggio");
+		
+		Button btnElimina = new Button(shlCarsharing, SWT.NONE);
+		btnElimina.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				Elimina elimina = new Elimina(Display.getDefault());
+				elimina.open();
+			}
+		});
+		btnElimina.setBounds(433, 441, 122, 25);
+		btnElimina.setText("Elimina noleggio");
 
 	}
 }
