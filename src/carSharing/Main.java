@@ -12,6 +12,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class Main {
 
@@ -52,13 +53,17 @@ public class Main {
 	 */
 	protected void createContents() {
 		shlCarsharing = new Shell();
-		shlCarsharing.setSize(581, 530);
+		shlCarsharing.setSize(600, 530);
 		shlCarsharing.setText("Carsharing");
 		
 		ArrayList<Auto> a1 = new ArrayList<Auto>(); 
 		ArrayList<Soci> a2 = new ArrayList<Soci>(); 
 		ArrayList<Noleggi> a3 = new ArrayList<Noleggi>(); 
 		Database db = new Database();
+		
+		Label lblNewLabel_1 = new Label(shlCarsharing, SWT.NONE);
+		lblNewLabel_1.setImage(SWTResourceManager.getImage(Main.class, "/resource/carsharing.png"));
+		lblNewLabel_1.setBounds(300, 269, 236, 223);
 		
 		List list_auto = new List(shlCarsharing, SWT.BORDER);
 		list_auto.setBounds(10, 39, 171, 68);
