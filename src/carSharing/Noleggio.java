@@ -7,10 +7,14 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+
 
 public class Noleggio extends Shell {
 	private Text text;
 	private Text text_1;
+	String auto,socio;
 
 	/**
 	 * Launch the application.
@@ -68,6 +72,15 @@ public class Noleggio extends Shell {
 		dateTime_1.setBounds(98, 129, 80, 24);
 		
 		Button btnNoleggia = new Button(this, SWT.NONE);
+		btnNoleggia.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				String tempAuto, tempSocio;
+				tempAuto = text.getText();
+				tempSocio = text_1.getText();
+				Noleggia(tempAuto,tempSocio);
+			}
+		});
 		btnNoleggia.setBounds(349, 201, 75, 25);
 		btnNoleggia.setText("Noleggia");
 		createContents();
@@ -85,5 +98,11 @@ public class Noleggio extends Shell {
 	@Override
 	protected void checkSubclass() {
 		// Disable the check that prevents subclassing of SWT components
+	}
+	
+	public void Noleggia(String auto, String socio){
+		this.auto=auto;
+		this.socio=socio;
+		System.out.println("auto, socio: "+ auto + socio);
 	}
 }
