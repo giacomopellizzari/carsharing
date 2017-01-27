@@ -56,9 +56,24 @@ public class Elimina extends Shell {
 				int x = codice_noleggio.getSelectionIndex();
 				String temp;
 				temp = codice_noleggio.getText();
+				
+				
 				if (x != -1){
+					for(int y=0;y<lista.size();y++){
+						String confronto =lista.get(y).getSocio()+ "  " + lista.get(y).getAuto()+ "  " + lista.get(y).dataInizio + "  " + lista.get(y).dataFine;
+						//System.out.println("temp: " + temp + " confronto: " + confronto);
+						if(temp.equals(confronto)){
+							System.out.println(" temp == confronto");
+							a.Elimina(lista,Integer.parseInt(lista.get(y).getCodNoleggio()));
+							codice_noleggio.setText("");
+							a.getNoleggi(lista);
+							for(int i=0;i<lista.size();i++){
+								codice_noleggio.add(lista.get(i).getSocio()+ "  " + lista.get(i).getAuto()+ "  " + lista.get(i).dataInizio + "  " + lista.get(i).dataFine);
+							}
+						}
+					}
 					System.out.println("il numero selezionato è " + x);
-					a.Elimina(lista, x);
+					
 				} else {
 					//lanciare messaggio di errore
 				}
@@ -69,10 +84,11 @@ public class Elimina extends Shell {
 		btnEliminaNol.setText("Elimina");
 		
 		
+		
+	
 		a.getNoleggi(lista);
 		for(int i=0;i<lista.size();i++){
 			codice_noleggio.add(lista.get(i).getSocio()+ "  " + lista.get(i).getAuto()+ "  " + lista.get(i).dataInizio + "  " + lista.get(i).dataFine);
-			
 		}
 		
 		
