@@ -63,7 +63,7 @@ public class Main {
 		
 		Label lblNewLabel_1 = new Label(shlCarsharing, SWT.NONE);
 		lblNewLabel_1.setImage(SWTResourceManager.getImage(Main.class, "/resource/carsharing.png"));
-		lblNewLabel_1.setBounds(300, 269, 236, 223);
+		lblNewLabel_1.setBounds(406, 180, 168, 211);
 		
 		List list_auto = new List(shlCarsharing, SWT.BORDER);
 		list_auto.setBounds(10, 39, 171, 68);
