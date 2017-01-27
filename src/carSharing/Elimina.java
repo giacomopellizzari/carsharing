@@ -6,7 +6,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -61,18 +60,22 @@ public class Elimina extends Shell {
 				if (x != -1){
 					for(int y=0;y<lista.size();y++){
 						String confronto =lista.get(y).getSocio()+ "  " + lista.get(y).getAuto()+ "  " + lista.get(y).dataInizio + "  " + lista.get(y).dataFine;
-						//System.out.println("temp: " + temp + " confronto: " + confronto);
+						
+						//elimino
 						if(temp.equals(confronto)){
 							System.out.println(" temp == confronto");
 							a.Elimina(lista,Integer.parseInt(lista.get(y).getCodNoleggio()));
 							codice_noleggio.setText("");
 							a.getNoleggi(lista);
+							
+							//pulisco la combo
+							codice_noleggio.removeAll();
+							//riscrivo i noleggi disponibili
 							for(int i=0;i<lista.size();i++){
 								codice_noleggio.add(lista.get(i).getSocio()+ "  " + lista.get(i).getAuto()+ "  " + lista.get(i).dataInizio + "  " + lista.get(i).dataFine);
 							}
 						}
 					}
-					System.out.println("il numero selezionato è " + x);
 					
 				} else {
 					//lanciare messaggio di errore

@@ -1,5 +1,9 @@
 package carSharing;
 
+
+
+import javax.xml.crypto.Data;
+
 public class Noleggi {
 	String codNoleggio;
 	String auto;
@@ -8,7 +12,16 @@ public class Noleggi {
 	String dataInizio;
 	boolean restituita;
 
-	public Noleggi(String codNoleggio,String auto,String socio,String dataInizio,String dataFine,boolean restituita) {
+	public Noleggi(String auto,String socio,String dataInizio,String dataFine,boolean restituita) {
+		this.restituita = restituita;
+		this.socio = socio;
+		this.dataFine = dataFine;
+		//this.codNoleggio = codNoleggio;
+		this.auto = auto;
+		this.dataInizio = dataInizio;
+	}
+
+	public Noleggi(String codNoleggio, String auto, String socio, String dataInizio, String dataFine,boolean restituita2) {
 		this.restituita = restituita;
 		this.socio = socio;
 		this.dataFine = dataFine;

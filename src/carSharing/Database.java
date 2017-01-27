@@ -7,6 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
+
+import javax.xml.crypto.Data;
+
+import org.apache.commons.lang.StringEscapeUtils;
+
 
 public class Database {
 
@@ -274,7 +280,7 @@ public class Database {
 	public void Elimina(ArrayList<Noleggi> a1, int id){
 		Connection cn = null;
 		Statement st;
-		ResultSet rs;
+		//ResultSet rs;
 		String sql;
 		{
 			// ________________________________connessione
@@ -307,11 +313,6 @@ public class Database {
 				e2.printStackTrace();
 			}
 			// jdbc:mysql://localhost:3306/Contatti?user=root&password=secret
-
-			String marca;
-			String modello;
-			String targa;
-			float costo_giornaliero;
 			
 			sql = "Delete from Noleggi "+ "where codice_noleggio ="+ id;
 			
@@ -335,7 +336,77 @@ public class Database {
 				// TODO Auto-generated catch block
 				e11.printStackTrace();
 			} // chiusura connessione
+		}
 	}
+		public void Aggiungi(Noleggi n){
+			Connection cn = null;
+			Statement st;
+			//ResultSet rs;
+			String sql;
+			{
+				// ________________________________connessione
+				try
+				{
+					Class.forName("com.mysql.jdbc.Driver");
+				} catch (
+				ClassNotFoundException e11)
+				{
+					System.out.println("ClassNotFoundException: ");
+					System.err.println(e11.getMessage());
+				} // fine try-catch
+
+				try
+				{
+					new java.io.File("src").getCanonicalPath();
+				} catch (
+				IOException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try
+				{
+					cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
+				} catch (
+				SQLException e2)
+				{
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				// jdbc:mysql://localhost:3306/Contatti?user=root&password=secret
+				//String codNoleggio;
+
+
+
+				String dataInizio = StringEscapeUtils.escapeSql(n.getDataInizio());
+				String dataFine = StringEscapeUtils.escapeSql(n.getDataFine());
+				System.out.println("la data di fine è " + dataFine);
+				String auto = StringEscapeUtils.escapeSql(n.getAuto());
+				String socio = StringEscapeUtils.escapeSql(n.getSocio());
+				boolean restituita = false;
+				sql = "Insert into Noleggi (auto, socio, fine, inizio, auto_restituita) values ('" + auto +"','" + socio + "','" + dataInizio + "','" + dataFine + "','" + restituita + "')";
+				
+				System.out.println(sql);
+				// ________________________________query
+				try {
+					st = cn.createStatement();
+					st.execute(sql);
+					System.out.println("Success");
+					
+				} catch (SQLException e1) {
+					System.out.println("errore:" + e1.getMessage());
+				} // fine try-catch
+				try {
+					cn.close();
+				} catch (
+
+				SQLException e11)
+
+				{
+					// TODO Auto-generated catch block
+					e11.printStackTrace();
+				} // chiusura connessione
+		}
 	}
 }
 

@@ -1,5 +1,9 @@
 package carSharing;
 
+import java.util.ArrayList;
+
+import javax.xml.crypto.Data;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -9,12 +13,13 @@ import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Combo;
 
 
 public class Noleggio extends Shell {
-	private Text text;
-	private Text text_1;
 	String auto,socio;
+	static Database a = new Database();
+	static ArrayList<Noleggi> lista = new ArrayList<Noleggi>();
 
 	/**
 	 * Launch the application.
@@ -41,48 +46,76 @@ public class Noleggio extends Shell {
 	 * @param display
 	 */
 	public Noleggio(Display display) {
-		super(display, SWT.SHELL_TRIM);
 		
-		text = new Text(this, SWT.BORDER);
-		text.setBounds(98, 23, 133, 21);
+		
+		super(display, SWT.SHELL_TRIM);
 		
 		Label lblAuto = new Label(this, SWT.NONE);
 		lblAuto.setBounds(10, 29, 55, 15);
 		lblAuto.setText("Auto");
 		
 		Label lblSocio = new Label(this, SWT.NONE);
-		lblSocio.setBounds(10, 64, 55, 15);
+		lblSocio.setBounds(10, 104, 55, 15);
 		lblSocio.setText("Socio");
 		
 		Label lblInizio = new Label(this, SWT.NONE);
-		lblInizio.setBounds(10, 97, 55, 15);
+		lblInizio.setBounds(10, 188, 55, 15);
 		lblInizio.setText("Inizio");
 		
 		Label lblNewLabel = new Label(this, SWT.NONE);
-		lblNewLabel.setBounds(10, 129, 55, 15);
+		lblNewLabel.setBounds(10, 244, 55, 15);
 		lblNewLabel.setText("Fine");
 		
-		text_1 = new Text(this, SWT.BORDER);
-		text_1.setBounds(98, 58, 133, 21);
+		Combo comboAuto = new Combo(this, SWT.NONE);
+		comboAuto.setBounds(71, 29, 217, 23);
 		
-		DateTime dateTime = new DateTime(this, SWT.BORDER);
-		dateTime.setBounds(98, 97, 80, 24);
+		Combo comboSocio = new Combo(this, SWT.NONE);
+		comboSocio.setBounds(71, 96, 217, 23);
 		
-		DateTime dateTime_1 = new DateTime(this, SWT.BORDER);
-		dateTime_1.setBounds(98, 129, 80, 24);
+		DateTime StringTimeInizio = new DateTime(this, SWT.BORDER);
+		StringTimeInizio.setBounds(98, 179, 80, 24);
+		
+		DateTime StringTimeFine = new DateTime(this, SWT.BORDER);
+		StringTimeFine.setBounds(98, 235, 80, 24);
+		
+		a.getNoleggi(lista);
+		for(int i=0;i<lista.size();i++){
+			comboAuto.add(lista.get(i).getAuto());
+			comboSocio.add(lista.get(i).getSocio());
+		}
 		
 		Button btnNoleggia = new Button(this, SWT.NONE);
 		btnNoleggia.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				String tempAuto, tempSocio;
-				tempAuto = text.getText();
-				tempSocio = text_1.getText();
-				Noleggia(tempAuto,tempSocio);
+				//inserisco sui combo gli elementi
+				String auto;
+				String Socio;
+				String dataInizio;
+				String dataFine;
+				a.getNoleggi(lista);
+				
+				auto = comboAuto.getText();
+				Socio = comboAuto.getText();
+				dataInizio = (String) StringTimeInizio.getData();
+				dataFine = (String) StringTimeFine.getData();
+				
+				Noleggi nol = new Noleggi(auto, Socio, dataInizio, dataFine, false);
+				a.Aggiungi(nol);
+				
+				//pulisco ed aggiorno le combo
+				comboAuto.removeAll();
+				comboSocio.removeAll();
+				for(int i=0;i<lista.size();i++){
+					comboAuto.add(lista.get(i).getAuto());
+					comboSocio.add(lista.get(i).getSocio());
+				}
 			}
 		});
-		btnNoleggia.setBounds(349, 201, 75, 25);
-		btnNoleggia.setText("Noleggia");
+		btnNoleggia.setBounds(213, 179, 75, 80);
+		btnNoleggia.setText("INSERISCI");
+		
+		
 		createContents();
 	}
 
@@ -91,7 +124,7 @@ public class Noleggio extends Shell {
 	 */
 	protected void createContents() {
 		setText("Noleggio");
-		setSize(450, 271);
+		setSize(327, 319);
 
 	}
 
@@ -100,9 +133,5 @@ public class Noleggio extends Shell {
 		// Disable the check that prevents subclassing of SWT components
 	}
 	
-	public void Noleggia(String auto, String socio){
-		this.auto=auto;
-		this.socio=socio;
-		System.out.println("auto, socio: "+ auto + socio);
-	}
+
 }
