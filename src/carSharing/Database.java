@@ -325,7 +325,9 @@ public class Database {
 			String modello;
 			String targa;
 			float costo_giornaliero;
-			sql = "SELECT * FROM auto";
+			int id = 0;
+			sql = "Delete from Noleggio "+ "where id ="+ id;
+			
 			System.out.println(sql);
 			// ________________________________query
 			try {
