@@ -66,13 +66,13 @@ public class Main {
 		lblNewLabel_1.setBounds(406, 180, 168, 211);
 		
 		List list_auto = new List(shlCarsharing, SWT.BORDER);
-		list_auto.setBounds(10, 39, 171, 68);
+		list_auto.setBounds(10, 39, 207, 68);
 		
 		List list_soci = new List(shlCarsharing, SWT.BORDER);
-		list_soci.setBounds(10, 153, 171, 68);
+		list_soci.setBounds(10, 145, 207, 82);
 		
 		List list_noleggi = new List(shlCarsharing, SWT.BORDER);
-		list_noleggi.setBounds(10, 265, 171, 68);
+		list_noleggi.setBounds(10, 263, 207, 149);
 		
 		Button btnNewButton = new Button(shlCarsharing, SWT.NONE);
 		btnNewButton.setSelection(true);
@@ -97,27 +97,27 @@ public class Main {
 				}
 			}
 		});
-		btnNewButton.setBounds(10, 441, 75, 25);
+		btnNewButton.setBounds(10, 441, 120, 25);
 		btnNewButton.setText("Refresh");
 		
 		List list_fill = new List(shlCarsharing, SWT.BORDER);
-		list_fill.setBounds(237, 39, 163, 222);
+		list_fill.setBounds(237, 39, 337, 373);
 		
 		Label lblNewLabel = new Label(shlCarsharing, SWT.NONE);
 		lblNewLabel.setBounds(69, 18, 55, 15);
-		lblNewLabel.setText("Auto");
+		lblNewLabel.setText("AUTO");
 		
 		Label lblSoci = new Label(shlCarsharing, SWT.NONE);
-		lblSoci.setBounds(69, 130, 55, 15);
-		lblSoci.setText("Soci");
+		lblSoci.setBounds(69, 124, 55, 15);
+		lblSoci.setText("SOCI");
 		
 		Label lblNoleggi = new Label(shlCarsharing, SWT.NONE);
-		lblNoleggi.setBounds(69, 244, 55, 15);
-		lblNoleggi.setText("Noleggi");
+		lblNoleggi.setBounds(69, 242, 55, 15);
+		lblNoleggi.setText("NOLEGGI");
 		
 		Label lblInformazioni = new Label(shlCarsharing, SWT.NONE);
-		lblInformazioni.setBounds(274, 18, 70, 15);
-		lblInformazioni.setText("Informazioni:");
+		lblInformazioni.setBounds(274, 18, 87, 15);
+		lblInformazioni.setText("INFORMAZIONI:");
 		
 		Button btnNoleggio = new Button(shlCarsharing, SWT.NONE);
 		btnNoleggio.addSelectionListener(new SelectionAdapter() {
