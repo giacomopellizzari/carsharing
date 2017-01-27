@@ -235,7 +235,7 @@ public class Database {
 
 			String codNoleggio;
 			String auto;
-			String cf;
+			String socio;
 			String dataFine;
 			String dataInizio;
 			boolean restituita;
@@ -248,13 +248,13 @@ public class Database {
 				rs = st.executeQuery(sql);
 				System.out.println("Success");
 				while (rs.next()) {
-					cf = rs.getString("socio");
-					auto = rs.getString("auto");
 					codNoleggio = rs.getString("codice_noleggio");
-					dataFine = rs.getString("fine");
+					auto = rs.getString("auto");
+					socio = rs.getString("socio");
 					dataInizio = rs.getString("inizio");
+					dataFine = rs.getString("fine");
 					restituita = rs.getBoolean("auto_restituita");
-					a1.add(new Noleggi(codNoleggio, cf, auto, dataInizio, dataFine, dataInizio, restituita));
+					a1.add(new Noleggi(codNoleggio, auto, socio, dataInizio, dataFine, restituita));
 				}
 			} catch (SQLException e1) {
 				System.out.println("errore:" + e1.getMessage());
@@ -271,50 +271,37 @@ public class Database {
 			} // chiusura connessione
 		}
 	}
-	public void Elimina(ArrayList<Auto> a1){
+	public void Elimina(ArrayList<Noleggi> a1, int id){
 		Connection cn = null;
 		Statement st;
 		ResultSet rs;
-
 		String sql;
-		;
-
 		{
 			// ________________________________connessione
 			try
-
 			{
 				Class.forName("com.mysql.jdbc.Driver");
 			} catch (
-
 			ClassNotFoundException e11)
-
 			{
 				System.out.println("ClassNotFoundException: ");
 				System.err.println(e11.getMessage());
 			} // fine try-catch
 
 			try
-
 			{
 				new java.io.File("src").getCanonicalPath();
 			} catch (
-
 			IOException e)
-
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 			try
-
 			{
 				cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
 			} catch (
-
 			SQLException e2)
-
 			{
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
@@ -325,23 +312,16 @@ public class Database {
 			String modello;
 			String targa;
 			float costo_giornaliero;
-			int id = 0;
-			sql = "Delete from Noleggio "+ "where id ="+ id;
+			
+			sql = "Delete from Noleggi "+ "where codice_noleggio ="+ id;
 			
 			System.out.println(sql);
 			// ________________________________query
 			try {
-				a1.clear();
 				st = cn.createStatement();
-				rs = st.executeQuery(sql);
+				st.execute(sql);
 				System.out.println("Success");
-				while (rs.next()) {
-					marca = rs.getString("marca");
-					modello = rs.getString("modello");
-					targa = rs.getString("targa");
-					costo_giornaliero = rs.getFloat("costo_giornaliero");
-					a1.add(new Auto(marca, modello, targa, costo_giornaliero));
-				}
+				
 			} catch (SQLException e1) {
 				System.out.println("errore:" + e1.getMessage());
 			} // fine try-catch

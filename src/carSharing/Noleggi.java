@@ -3,14 +3,14 @@ package carSharing;
 public class Noleggi {
 	String codNoleggio;
 	String auto;
-	String cf;
+	String socio;
 	String dataFine;
 	String dataInizio;
 	boolean restituita;
 
-	public Noleggi(String cf,String nome,String codNoleggio,String auto,String dataInizio,String dataFine,boolean restituita) {
+	public Noleggi(String codNoleggio,String auto,String socio,String dataInizio,String dataFine,boolean restituita) {
 		this.restituita = restituita;
-		this.cf = cf;
+		this.socio = socio;
 		this.dataFine = dataFine;
 		this.codNoleggio = codNoleggio;
 		this.auto = auto;
@@ -19,7 +19,7 @@ public class Noleggi {
 
 	@Override
 	public String toString() {
-		return "Noleggi [codNoleggio=" + codNoleggio + ", auto=" + auto + ", cf=" + cf + ", dataFine=" + dataFine
+		return "Noleggi [codNoleggio=" + codNoleggio + ", auto=" + auto + ", socio=" + socio + ", dataFine=" + dataFine
 				+ ", dataInizio=" + dataInizio + ", restituita=" + restituita + "]";
 	}
 
@@ -39,12 +39,12 @@ public class Noleggi {
 		this.auto = auto;
 	}
 
-	public String getCf() {
-		return cf;
+	public String getSocio() {
+		return socio;
 	}
 
-	public void setCf(String cf) {
-		this.cf = cf;
+	public void setSocio(String socio) {
+		this.socio = socio;
 	}
 
 	public String getDataFine() {
