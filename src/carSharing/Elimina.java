@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
@@ -74,11 +75,18 @@ public class Elimina extends Shell {
 							for(int i=0;i<lista.size();i++){
 								codice_noleggio.add(lista.get(i).getSocio()+ "  " + lista.get(i).getAuto()+ "  " + lista.get(i).dataInizio + "  " + lista.get(i).dataFine);
 							}
+							getShell().close();
+						}else{
+							
 						}
 					}
 					
 				} else {
 					//lanciare messaggio di errore
+					MessageBox messageBox = new MessageBox(getShell());
+					messageBox.setText("ERRORE");
+					messageBox.setMessage("Inserire un opzione valida");
+					messageBox.open();
 				}
 				
 			}

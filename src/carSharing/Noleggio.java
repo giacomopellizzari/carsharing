@@ -1,6 +1,7 @@
 package carSharing;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.xml.crypto.Data;
 
@@ -14,6 +15,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Combo;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 
 public class Noleggio extends Shell {
@@ -51,20 +53,24 @@ public class Noleggio extends Shell {
 		super(display, SWT.SHELL_TRIM);
 		
 		Label lblAuto = new Label(this, SWT.NONE);
+		lblAuto.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
 		lblAuto.setBounds(10, 29, 55, 15);
-		lblAuto.setText("Auto");
+		lblAuto.setText("AUTO");
 		
 		Label lblSocio = new Label(this, SWT.NONE);
+		lblSocio.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
 		lblSocio.setBounds(10, 104, 55, 15);
-		lblSocio.setText("Socio");
+		lblSocio.setText("SOCIO");
 		
 		Label lblInizio = new Label(this, SWT.NONE);
+		lblInizio.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
 		lblInizio.setBounds(10, 188, 55, 15);
-		lblInizio.setText("Inizio");
+		lblInizio.setText("INIZIO");
 		
 		Label lblNewLabel = new Label(this, SWT.NONE);
+		lblNewLabel.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
 		lblNewLabel.setBounds(10, 244, 55, 15);
-		lblNewLabel.setText("Fine");
+		lblNewLabel.setText("FINE");
 		
 		Combo comboAuto = new Combo(this, SWT.NONE);
 		comboAuto.setBounds(71, 29, 217, 23);
@@ -85,6 +91,7 @@ public class Noleggio extends Shell {
 		}
 		
 		Button btnNoleggia = new Button(this, SWT.NONE);
+		btnNoleggia.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
 		btnNoleggia.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -96,9 +103,11 @@ public class Noleggio extends Shell {
 				a.getNoleggi(lista);
 				
 				auto = comboAuto.getText();
-				Socio = comboAuto.getText();
-				dataInizio = (String) StringTimeInizio.getData();
-				dataFine = (String) StringTimeFine.getData();
+				Socio = comboSocio.getText();
+				dataInizio = StringTimeInizio.getYear() + "/" + (StringTimeInizio.getMonth()+1) + "/" + StringTimeInizio.getDay();
+				dataFine = StringTimeFine.getYear() + "/" + (StringTimeFine.getMonth()+1) + "/" + StringTimeFine.getDay();
+				
+				//lista = a.getRicercaAuto(auto);
 				
 				Noleggi nol = new Noleggi(auto, Socio, dataInizio, dataFine, false);
 				a.Aggiungi(nol);

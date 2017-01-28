@@ -75,6 +75,7 @@ public class Main {
 		list_noleggi.setBounds(10, 263, 207, 149);
 		
 		Button btnNewButton = new Button(shlCarsharing, SWT.NONE);
+		btnNewButton.setFont(SWTResourceManager.getFont("Ebrima", 14, SWT.BOLD | SWT.ITALIC));
 		btnNewButton.setSelection(true);
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -97,29 +98,34 @@ public class Main {
 				}
 			}
 		});
-		btnNewButton.setBounds(10, 441, 120, 25);
+		btnNewButton.setBounds(10, 441, 109, 40);
 		btnNewButton.setText("Refresh");
 		
 		List list_fill = new List(shlCarsharing, SWT.BORDER);
 		list_fill.setBounds(237, 39, 337, 373);
 		
 		Label lblNewLabel = new Label(shlCarsharing, SWT.NONE);
+		lblNewLabel.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
 		lblNewLabel.setBounds(69, 18, 55, 15);
 		lblNewLabel.setText("AUTO");
 		
 		Label lblSoci = new Label(shlCarsharing, SWT.NONE);
+		lblSoci.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
 		lblSoci.setBounds(69, 124, 55, 15);
 		lblSoci.setText("SOCI");
 		
 		Label lblNoleggi = new Label(shlCarsharing, SWT.NONE);
+		lblNoleggi.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
 		lblNoleggi.setBounds(69, 242, 55, 15);
 		lblNoleggi.setText("NOLEGGI");
 		
 		Label lblInformazioni = new Label(shlCarsharing, SWT.NONE);
-		lblInformazioni.setBounds(274, 18, 87, 15);
+		lblInformazioni.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
+		lblInformazioni.setBounds(274, 18, 109, 15);
 		lblInformazioni.setText("INFORMAZIONI:");
 		
 		Button btnNoleggio = new Button(shlCarsharing, SWT.NONE);
+		btnNoleggio.setFont(SWTResourceManager.getFont("Ebrima", 14, SWT.BOLD | SWT.ITALIC));
 		btnNoleggio.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -129,10 +135,11 @@ public class Main {
 				
 			}
 		});
-		btnNoleggio.setBounds(290, 441, 120, 25);
-		btnNoleggio.setText("Nuovo noleggio");
+		btnNoleggio.setBounds(331, 441, 243, 40);
+		btnNoleggio.setText("NUOVO NOLEGGIO");
 		
 		Button btnElimina = new Button(shlCarsharing, SWT.NONE);
+		btnElimina.setFont(SWTResourceManager.getFont("Ebrima", 14, SWT.BOLD | SWT.ITALIC));
 		btnElimina.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -140,8 +147,8 @@ public class Main {
 				elimina.open();
 			}
 		});
-		btnElimina.setBounds(433, 441, 122, 25);
-		btnElimina.setText("Elimina noleggio");
+		btnElimina.setBounds(125, 441, 200, 40);
+		btnElimina.setText("ELIMINA NOLEGGIO");
 
 	}
 }
