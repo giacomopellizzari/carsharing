@@ -17,6 +17,7 @@ public class Elimina extends Shell {
 	
 	static Database a = new Database();
 	static ArrayList<Noleggi> lista = new ArrayList<Noleggi>();
+	ArrayList<Auto> listaAuto = new ArrayList<Auto>();
 
 	/**
 	 * Launch the application.
@@ -119,6 +120,12 @@ public class Elimina extends Shell {
 		combo.setBounds(10, 219, 354, 23);
 		
 		Button btnElimina = new Button(this, SWT.NONE);
+		btnElimina.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				a.getAuto(listaAuto);
+			}
+		});
 		btnElimina.setFont(SWTResourceManager.getFont("Ebrima", 11, SWT.BOLD));
 		btnElimina.setBounds(370, 217, 75, 25);
 		btnElimina.setText("Elimina");
