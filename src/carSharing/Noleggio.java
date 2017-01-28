@@ -10,6 +10,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -108,17 +109,29 @@ public class Noleggio extends Shell {
 				dataFine = StringTimeFine.getYear() + "/" + (StringTimeFine.getMonth()+1) + "/" + StringTimeFine.getDay();
 				
 				//lista = a.getRicercaAuto(auto);
+				int x = comboAuto.getSelectionIndex();
+				int v = comboSocio.getSelectionIndex();
 				
-				Noleggi nol = new Noleggi(auto, Socio, dataInizio, dataFine, false);
-				a.Aggiungi(nol);
-				
-				//pulisco ed aggiorno le combo
-				comboAuto.removeAll();
-				comboSocio.removeAll();
-				for(int i=0;i<lista.size();i++){
-					comboAuto.add(lista.get(i).getAuto());
-					comboSocio.add(lista.get(i).getSocio());
+				if(x!=-1 && v!=-1){
+					Noleggi nol = new Noleggi(auto, Socio, dataInizio, dataFine, false);
+					a.Aggiungi(nol);
+					
+					//pulisco ed aggiorno le combo
+					comboAuto.removeAll();
+					comboSocio.removeAll();
+					for(int i=0;i<lista.size();i++){
+						comboAuto.add(lista.get(i).getAuto());
+						comboSocio.add(lista.get(i).getSocio());
+					}
+				}else{
+					//lanciare messaggio di errore
+					MessageBox messageBox = new MessageBox(getShell());
+					messageBox.setText("ERRORE");
+					messageBox.setMessage("Inserire un opzione valida");
+					messageBox.open();
 				}
+
+
 			}
 		});
 		btnNoleggia.setBounds(213, 179, 75, 80);

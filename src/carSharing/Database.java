@@ -414,6 +414,7 @@ public class Database {
 				} // chiusura connessione
 		}
 		}
+		
 			public void getRicercaAuto(String auto) {
 
 				Connection cn = null;
@@ -422,50 +423,36 @@ public class Database {
 
 				String sql;
 				;
-
 				{
 					// ________________________________connessione
 					try
-
 					{
 						Class.forName("com.mysql.jdbc.Driver");
 					} catch (
-
 					ClassNotFoundException e11)
-
 					{
 						System.out.println("ClassNotFoundException: ");
 						System.err.println(e11.getMessage());
 					} // fine try-catch
-
 					try
-
 					{
 						new java.io.File("src").getCanonicalPath();
 					} catch (
-
 					IOException e)
-
 					{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-
 					try
-
 					{
 						cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
 					} catch (
-
 					SQLException e2)
-
 					{
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
 					// jdbc:mysql://localhost:3306/Contatti?user=root&password=secret
-
-				
 					sql = "SELECT * FROM noleggi";
 					System.out.println(sql);
 					// ________________________________query
@@ -474,8 +461,7 @@ public class Database {
 						rs = st.executeQuery(sql);
 						System.out.println("Success");
 						while (rs.next()) {
-							auto = rs.getString("auto");
-							
+							auto = rs.getString("auto");	
 						}
 					} catch (SQLException e1) {
 						System.out.println("errore:" + e1.getMessage());
@@ -483,15 +469,12 @@ public class Database {
 					try {
 						cn.close();
 					} catch (
-
 					SQLException e11)
-
 					{
 						// TODO Auto-generated catch block
 						e11.printStackTrace();
 					} // chiusura connessione
 				}
-			
-	}
+			}
 }
 
