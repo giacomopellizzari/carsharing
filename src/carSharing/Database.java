@@ -277,6 +277,87 @@ public class Database {
 			} // chiusura connessione
 		}
 	}
+	
+	public void cercaNoleggi(String s,String s1,Main m){
+
+		Connection cn = null;
+		Statement st;
+		ResultSet rs;
+
+		String sql;
+		;
+
+		{
+			// ________________________________connessione
+			try
+
+			{
+				Class.forName("com.mysql.jdbc.Driver");
+			} catch (
+
+			ClassNotFoundException e11)
+
+			{
+				System.out.println("ClassNotFoundException: ");
+				System.err.println(e11.getMessage());
+			} // fine try-catch
+
+			try
+
+			{
+				new java.io.File("src").getCanonicalPath();
+			} catch (
+
+			IOException e)
+
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			try
+
+			{
+				cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carsharing?user=root&password=");
+			} catch (
+
+			SQLException e2)
+
+			{
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+			// jdbc:mysql://localhost:3306/Contatti?user=root&password=secret
+
+			sql = "SELECT * FROM noleggi WHERE inizio>'" + s + "' AND fine<'" + s1 + "'";
+			System.out.println(sql);
+			// ________________________________query
+			try {
+				st = cn.createStatement();
+				rs = st.executeQuery(sql);
+				System.out.println("Success");
+				while (rs.next()) {
+					m.nol(rs.getString("codice_noleggio"));
+					
+				}
+			} catch (SQLException e1) {
+				System.out.println("errore:" + e1.getMessage());
+			} // fine try-catch
+			try {
+				cn.close();
+			} catch (
+
+			SQLException e11)
+
+			{
+				// TODO Auto-generated catch block
+				e11.printStackTrace();
+			}
+			}
+	}
+	
+	
+	
 	public void Elimina(ArrayList<Noleggi> a1, int id){
 		Connection cn = null;
 		Statement st;

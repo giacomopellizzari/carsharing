@@ -15,11 +15,16 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.widgets.DateTime;
 
 public class Main {
 
 	protected Shell shlCarsharing;
-
+	private DateTime dateTime_1;
+	private DateTime dateTime;
+	private Database db;
+	private List list_fill;
+	
 	/**
 	 * Launch the application.
 	 * @param args
@@ -55,19 +60,19 @@ public class Main {
 	 */
 	protected void createContents() {
 		shlCarsharing = new Shell();
-		shlCarsharing.setSize(600, 530);
+		shlCarsharing.setSize(818, 530);
 		shlCarsharing.setText("Carsharing");
 		
 		ArrayList<Auto> a1 = new ArrayList<Auto>(); 
 		ArrayList<Soci> a2 = new ArrayList<Soci>(); 
 		ArrayList<Noleggi> a3 = new ArrayList<Noleggi>(); 
-		Database db = new Database();
+		db = new Database();
 		
 		Label lblNewLabel_1 = new Label(shlCarsharing, SWT.NONE);
 		lblNewLabel_1.setImage(SWTResourceManager.getImage(Main.class, "/resource/carsharing.png"));
 		lblNewLabel_1.setBounds(406, 180, 168, 211);
 		
-		List list_fill = new List(shlCarsharing, SWT.BORDER);
+		list_fill = new List(shlCarsharing, SWT.BORDER);
 		list_fill.setBounds(237, 39, 337, 373);
 		
 		List list_auto = new List(shlCarsharing, SWT.BORDER);
@@ -172,6 +177,48 @@ public class Main {
 		});
 		btnElimina.setBounds(125, 441, 200, 40);
 		btnElimina.setText("ELIMINA NOLEGGIO");
+		
+		dateTime = new DateTime(shlCarsharing, SWT.BORDER);
+		dateTime.setBounds(628, 83, 80, 24);
+		
+		dateTime_1 = new DateTime(shlCarsharing, SWT.BORDER);
+		dateTime_1.setBounds(628, 145, 80, 24);
+		
+		Button btnMostraINoleggi = new Button(shlCarsharing, SWT.NONE);
+		btnMostraINoleggi.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				fai();
+			}
+		});
+		btnMostraINoleggi.setBounds(607, 39, 185, 25);
+		btnMostraINoleggi.setText("Mostra i noleggi");
+		
+		Label lblDa = new Label(shlCarsharing, SWT.NONE);
+		lblDa.setBounds(607, 86, 19, 15);
+		lblDa.setText("da");
+		
+		Label lblA = new Label(shlCarsharing, SWT.NONE);
+		lblA.setBounds(612, 148, 10, 15);
+		lblA.setText("a");
 
 	}
+		private void fai(){
+		String dataInizio,dataFine;
+		dataInizio = dateTime.getYear() + "/" + (dateTime.getMonth()+1) + "/" + dateTime.getDay();
+		dataFine = dateTime_1.getYear() + "/" + (dateTime_1.getMonth()+1) + "/" + dateTime_1.getDay();
+		db.cercaNoleggi(dataInizio, dataFine, this);
+	}
+		public void nol(String s){
+			Display.getDefault().asyncExec(new Runnable(){
+
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					list_fill.add(s);
+					
+				}
+				
+			});
+		}
 }
