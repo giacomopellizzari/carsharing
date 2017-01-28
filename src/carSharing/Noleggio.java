@@ -23,6 +23,8 @@ public class Noleggio extends Shell {
 	String auto,socio;
 	static Database a = new Database();
 	static ArrayList<Noleggi> lista = new ArrayList<Noleggi>();
+	static ArrayList<Auto> listauto = new ArrayList<Auto>();
+	static ArrayList<Soci> listasoci = new ArrayList<Soci>();
 
 	/**
 	 * Launch the application.
@@ -86,10 +88,15 @@ public class Noleggio extends Shell {
 		StringTimeFine.setBounds(98, 235, 80, 24);
 		
 		a.getNoleggi(lista);
-		for(int i=0;i<lista.size();i++){
-			comboAuto.add(lista.get(i).getAuto());
-			comboSocio.add(lista.get(i).getSocio());
+		a.getAuto(listauto);
+		a.getSoci(listasoci);
+		for(int i=0;i<listauto.size();i++){
+			comboAuto.add(listauto.get(i).getTarga());
 		}
+		for(int i=0;i<listasoci.size();i++){
+			comboSocio.add(listasoci.get(i).getCognome());
+		}
+		
 		
 		Button btnNoleggia = new Button(this, SWT.NONE);
 		btnNoleggia.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
@@ -103,8 +110,7 @@ public class Noleggio extends Shell {
 				String dataFine;
 				a.getNoleggi(lista);
 				
-				auto = comboAuto.getText();
-				Socio = comboSocio.getText();
+			
 				dataInizio = StringTimeInizio.getYear() + "/" + (StringTimeInizio.getMonth()+1) + "/" + StringTimeInizio.getDay();
 				dataFine = StringTimeFine.getYear() + "/" + (StringTimeFine.getMonth()+1) + "/" + StringTimeFine.getDay();
 				
@@ -113,15 +119,19 @@ public class Noleggio extends Shell {
 				int v = comboSocio.getSelectionIndex();
 				
 				if(x!=-1 && v!=-1){
+				auto = comboAuto.getText();
+				Socio = comboSocio.getText();
 					Noleggi nol = new Noleggi(auto, Socio, dataInizio, dataFine, false);
 					a.Aggiungi(nol);
 					
 					//pulisco ed aggiorno le combo
 					comboAuto.removeAll();
 					comboSocio.removeAll();
-					for(int i=0;i<lista.size();i++){
-						comboAuto.add(lista.get(i).getAuto());
-						comboSocio.add(lista.get(i).getSocio());
+					for(int i=0;i<listauto.size();i++){
+						comboAuto.add(listauto.get(i).getTarga());
+					}
+					for(int i=0;i<listasoci.size();i++){
+						comboSocio.add(listasoci.get(i).getCognome());
 					}
 				}else{
 					//lanciare messaggio di errore

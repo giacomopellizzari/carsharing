@@ -116,14 +116,18 @@ public class Elimina extends Shell {
 		lblAutoDaEliminare.setBounds(24, 186, 227, 27);
 		lblAutoDaEliminare.setText("Auto da eliminare:");
 		
-		Combo combo = new Combo(this, SWT.NONE);
-		combo.setBounds(10, 219, 354, 23);
+		Combo comboEliminiaAuto = new Combo(this, SWT.NONE);
+		comboEliminiaAuto.setBounds(10, 219, 354, 23);
 		
 		Button btnElimina = new Button(this, SWT.NONE);
 		btnElimina.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				a.getAuto(listaAuto);
+				for(int i=0;i<listaAuto.size();i++){
+					comboEliminiaAuto.add(listaAuto.get(i).getTarga());
+					
+				}
 			}
 		});
 		btnElimina.setFont(SWTResourceManager.getFont("Ebrima", 11, SWT.BOLD));
