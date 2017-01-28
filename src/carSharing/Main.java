@@ -13,6 +13,8 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 
 public class Main {
 
@@ -65,13 +67,37 @@ public class Main {
 		lblNewLabel_1.setImage(SWTResourceManager.getImage(Main.class, "/resource/carsharing.png"));
 		lblNewLabel_1.setBounds(406, 180, 168, 211);
 		
+		List list_fill = new List(shlCarsharing, SWT.BORDER);
+		list_fill.setBounds(237, 39, 337, 373);
+		
 		List list_auto = new List(shlCarsharing, SWT.BORDER);
+		list_auto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseDown(MouseEvent e) {
+				list_fill.removeAll();
+				list_fill.add(a1.get(list_auto.getSelectionIndex()).getMarca() + " " +  a1.get(list_auto.getSelectionIndex()).getModello() + " " + a1.get(list_auto.getSelectionIndex()).getTarga() + " " + a1.get(list_auto.getSelectionIndex()).getCosto_giornaliero());
+			}
+		});
 		list_auto.setBounds(10, 39, 207, 68);
 		
 		List list_soci = new List(shlCarsharing, SWT.BORDER);
+		list_soci.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseDown(MouseEvent e) {
+				list_fill.removeAll();
+				list_fill.add(a2.get(list_soci.getSelectionIndex()).getNome() + " " +  a2.get(list_soci.getSelectionIndex()).getCognome() + " " + a2.get(list_soci.getSelectionIndex()).getCf() + " " + a2.get(list_soci.getSelectionIndex()).getIndirizzo());
+			}
+		});
 		list_soci.setBounds(10, 145, 207, 82);
 		
 		List list_noleggi = new List(shlCarsharing, SWT.BORDER);
+		list_noleggi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseDown(MouseEvent e) {
+				list_fill.removeAll();
+				list_fill.add(a3.get(list_noleggi.getSelectionIndex()).getAuto() + " " +  a3.get(list_noleggi.getSelectionIndex()).getCodNoleggio() + " " + a3.get(list_noleggi.getSelectionIndex()).getDataInizio() + " " + a3.get(list_noleggi.getSelectionIndex()).getDataFine() + " " + a3.get(list_noleggi.getSelectionIndex()).getSocio() );
+			}
+		});
 		list_noleggi.setBounds(10, 263, 207, 149);
 		
 		Button btnNewButton = new Button(shlCarsharing, SWT.NONE);
@@ -100,9 +126,6 @@ public class Main {
 		});
 		btnNewButton.setBounds(10, 441, 109, 40);
 		btnNewButton.setText("Refresh");
-		
-		List list_fill = new List(shlCarsharing, SWT.BORDER);
-		list_fill.setBounds(237, 39, 337, 373);
 		
 		Label lblNewLabel = new Label(shlCarsharing, SWT.NONE);
 		lblNewLabel.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
