@@ -11,6 +11,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class Elimina extends Shell {
 	
@@ -47,9 +48,10 @@ public class Elimina extends Shell {
 		super(display, SWT.SHELL_TRIM);
 		
 		Combo codice_noleggio = new Combo(this, SWT.NONE);
-		codice_noleggio.setBounds(10, 31, 354, 23);
+		codice_noleggio.setBounds(10, 42, 354, 23);
 		
 		Button btnEliminaNol = new Button(this, SWT.NONE);
+		btnEliminaNol.setFont(SWTResourceManager.getFont("Ebrima", 11, SWT.BOLD));
 		btnEliminaNol.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -91,7 +93,7 @@ public class Elimina extends Shell {
 				
 			}
 		});
-		btnEliminaNol.setBounds(370, 29, 75, 25);
+		btnEliminaNol.setBounds(370, 40, 75, 25);
 		btnEliminaNol.setText("Elimina");
 		
 		
@@ -104,8 +106,22 @@ public class Elimina extends Shell {
 		
 		
 		Label lblNoleggioDaEliminare = new Label(this, SWT.NONE);
-		lblNoleggioDaEliminare.setBounds(24, 10, 163, 15);
+		lblNoleggioDaEliminare.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
+		lblNoleggioDaEliminare.setBounds(24, 10, 163, 26);
 		lblNoleggioDaEliminare.setText("Noleggio da eliminare");
+		
+		Label lblAutoDaEliminare = new Label(this, SWT.NONE);
+		lblAutoDaEliminare.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
+		lblAutoDaEliminare.setBounds(24, 186, 227, 27);
+		lblAutoDaEliminare.setText("Auto da eliminare:");
+		
+		Combo combo = new Combo(this, SWT.NONE);
+		combo.setBounds(10, 219, 354, 23);
+		
+		Button btnElimina = new Button(this, SWT.NONE);
+		btnElimina.setFont(SWTResourceManager.getFont("Ebrima", 11, SWT.BOLD));
+		btnElimina.setBounds(370, 217, 75, 25);
+		btnElimina.setText("Elimina");
 		createContents();
 	}
 
@@ -114,7 +130,7 @@ public class Elimina extends Shell {
 	 */
 	protected void createContents() {
 		setText("Elimina");
-		setSize(471, 200);
+		setSize(471, 417);
 		
 
 	}
