@@ -1,12 +1,19 @@
 package carSharing;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
+
+import com.ibm.icu.text.DateFormat;
+import com.ibm.icu.text.SimpleDateFormat;
+
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
@@ -141,12 +148,43 @@ public class Restituisci extends Shell {
 						if(temp.equals(confronto)){
 							System.out.println(" temp == confronto ");
 							String nol = lista.get(y).getCodNoleggio();
-							//Date dataDiOggi = current_date();
-							//Date data_inizio = lista.get(y).getDataInizio();
+							DateFormat format = new SimpleDateFormat("yyyy, MM, dd");
+							
+							Date date_corrente = new Date();
+							format.format(date_corrente);
+							String data_inizio = lista.get(y).getDataInizio();
+							String data_fine = lista.get(y).getDataFine();
+							
+							Date date_inizio = new Date();
+							Date date_fine = new Date();
+							try {
+								date_inizio = format.parse(data_inizio);
+								date_fine = format.parse(data_fine);
+							} catch (ParseException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							
+							
 							int penale = 0;
 							int importo = 0;
 							
 							//calcoli
+						    final java.util.Calendar calDataInizio = GregorianCalendar.getInstance();
+						    calDataInizio.setTime( date_inizio );
+						    
+						    
+						    final java.util.Calendar calDataFine = GregorianCalendar.getInstance();
+						    calDataFine.setTime( date_fine );
+						    
+						    final java.util.Calendar calCorrente = GregorianCalendar.getInstance();
+						    calCorrente.setTime( date_corrente );
+						    
+						    if(calCorrente.after(calDataFine)){
+						    	lblGiorniRitardo.setText("vero");;
+						    }
+						    
+						    
 							
 							//set text
 							String importostr = Integer.toString(importo);
