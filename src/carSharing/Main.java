@@ -188,6 +188,7 @@ public class Main {
 		btnMostraINoleggi.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				list_fill.removeAll();
 				fai();
 			}
 		});
@@ -204,10 +205,10 @@ public class Main {
 
 	}
 		private void fai(){
-		String dataInizio,dataFine;
-		dataInizio = dateTime.getYear() + "/" + (dateTime.getMonth()+1) + "/" + dateTime.getDay();
-		dataFine = dateTime_1.getYear() + "/" + (dateTime_1.getMonth()+1) + "/" + dateTime_1.getDay();
-		db.cercaNoleggi(dataInizio, dataFine, this);
+			String dataInizio,dataFine;
+			dataInizio = dateTime.getYear() + "/" + (dateTime.getMonth()+1) + "/" + dateTime.getDay();
+			dataFine = dateTime_1.getYear() + "/" + (dateTime_1.getMonth()+1) + "/" + dateTime_1.getDay();
+			db.cercaNoleggi(dataInizio, dataFine, this);
 	}
 		public void nol(String s){
 			Display.getDefault().asyncExec(new Runnable(){

@@ -97,12 +97,17 @@ public class Elimina extends Shell {
 		btnEliminaNol.setBounds(370, 40, 75, 25);
 		btnEliminaNol.setText("Elimina");
 		
+		Combo comboEliminaAuto = new Combo(this, SWT.NONE);
+		comboEliminaAuto.setBounds(10, 219, 354, 23);
 		
-		
-	
+		//metto gli elementi nelle combo
 		a.getNoleggi(lista);
 		for(int i=0;i<lista.size();i++){
 			codice_noleggio.add(lista.get(i).getSocio()+ "  " + lista.get(i).getAuto()+ "  " + lista.get(i).dataInizio + "  " + lista.get(i).dataFine);
+		}
+		a.getAuto(listaAuto);
+		for(int i=0;i<listaAuto.size();i++){
+			comboEliminaAuto.add(listaAuto.get(i).getTarga());
 		}
 		
 		
@@ -116,24 +121,66 @@ public class Elimina extends Shell {
 		lblAutoDaEliminare.setBounds(24, 186, 227, 27);
 		lblAutoDaEliminare.setText("Auto da eliminare:");
 		
-		Combo comboEliminiaAuto = new Combo(this, SWT.NONE);
-		comboEliminiaAuto.setBounds(10, 219, 354, 23);
+		Label lblNoleggiEliminati = new Label(this, SWT.NONE);
+		lblNoleggiEliminati.setBounds(10, 353, 435, 15);
+		createContents();
+		
 		
 		Button btnElimina = new Button(this, SWT.NONE);
 		btnElimina.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				a.getAuto(listaAuto);
-				for(int i=0;i<listaAuto.size();i++){
-					comboEliminiaAuto.add(listaAuto.get(i).getTarga());
-					
+				int x = comboEliminaAuto.getSelectionIndex();
+				String temp;
+				temp = comboEliminaAuto.getText();
+				
+				if (x != -1){
+					for(int y=0;y<listaAuto.size();y++){
+						String confronto = listaAuto.get(y).getTarga();
+						
+						//elimino
+						
+						if(temp.equals(confronto)){
+							
+							// controllo di eventuali noleggi eliminati
+							int numero_noleggi = 0;
+							for(int z=0;z<lista.size();z++){
+								if(lista.get(z).getAuto().equals(temp)){
+									numero_noleggi++;
+								}
+							}
+							
+							System.out.println(" temp == confronto");
+							a.EliminaAuto(listaAuto, confronto);
+							comboEliminaAuto.setText("");
+							a.getAuto(listaAuto);
+							
+							//aggiorno le combo
+							lblNoleggiEliminati.setText("Hai eliminato "+ numero_noleggi +" noleggi Correlati all'auto");
+							comboEliminaAuto.removeAll();
+							for(int i=0;i<listaAuto.size();i++){
+								comboEliminaAuto.add(listaAuto.get(i).getTarga());
+							}
+							
+						}
+					}
+				} else {
+					//lanciare messaggio di errore
+					MessageBox messageBox = new MessageBox(getShell());
+					messageBox.setText("ERRORE");
+					messageBox.setMessage("Inserire un opzione valida");
+					messageBox.open();
 				}
+				
+
 			}
 		});
 		btnElimina.setFont(SWTResourceManager.getFont("Ebrima", 11, SWT.BOLD));
 		btnElimina.setBounds(370, 217, 75, 25);
 		btnElimina.setText("Elimina");
-		createContents();
+		
+
 	}
 
 	/**
