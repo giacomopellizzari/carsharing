@@ -47,6 +47,8 @@ public class Elimina extends Shell {
 	 */
 	public Elimina(Display display) {
 		super(display, SWT.SHELL_TRIM);
+		setImage(SWTResourceManager.getImage(Elimina.class, "/resource/carsharing.png"));
+		setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
 		
 		Combo codice_noleggio = new Combo(this, SWT.NONE);
 		codice_noleggio.setBounds(10, 42, 354, 23);
@@ -112,17 +114,23 @@ public class Elimina extends Shell {
 		
 		
 		Label lblNoleggioDaEliminare = new Label(this, SWT.NONE);
+		lblNoleggioDaEliminare.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+		lblNoleggioDaEliminare.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
 		lblNoleggioDaEliminare.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
 		lblNoleggioDaEliminare.setBounds(24, 10, 163, 26);
 		lblNoleggioDaEliminare.setText("Noleggio da eliminare");
 		
 		Label lblAutoDaEliminare = new Label(this, SWT.NONE);
+		lblAutoDaEliminare.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+		lblAutoDaEliminare.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_RED));
 		lblAutoDaEliminare.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
 		lblAutoDaEliminare.setBounds(24, 186, 227, 27);
 		lblAutoDaEliminare.setText("Auto da eliminare:");
 		
 		Label lblNoleggiEliminati = new Label(this, SWT.NONE);
-		lblNoleggiEliminati.setBounds(10, 353, 435, 15);
+		lblNoleggiEliminati.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_MAGENTA));
+		lblNoleggiEliminati.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+		lblNoleggiEliminati.setBounds(10, 345, 435, 23);
 		createContents();
 		
 		
@@ -187,7 +195,7 @@ public class Elimina extends Shell {
 	 * Create contents of the shell.
 	 */
 	protected void createContents() {
-		setText("Elimina");
+		setText("CARSHARING JACK&ALE&TORRE");
 		setSize(471, 417);
 		
 

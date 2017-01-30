@@ -54,23 +54,33 @@ public class Noleggio extends Shell {
 		
 		
 		super(display, SWT.SHELL_TRIM);
+		setImage(SWTResourceManager.getImage(Noleggio.class, "/resource/carsharing.png"));
+		setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_BLUE));
 		
 		Label lblAuto = new Label(this, SWT.NONE);
+		lblAuto.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_BLUE));
+		lblAuto.setForeground(SWTResourceManager.getColor(SWT.COLOR_CYAN));
 		lblAuto.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
 		lblAuto.setBounds(10, 29, 55, 15);
 		lblAuto.setText("AUTO");
 		
 		Label lblSocio = new Label(this, SWT.NONE);
+		lblSocio.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_BLUE));
+		lblSocio.setForeground(SWTResourceManager.getColor(SWT.COLOR_CYAN));
 		lblSocio.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
 		lblSocio.setBounds(10, 104, 55, 15);
 		lblSocio.setText("SOCIO");
 		
 		Label lblInizio = new Label(this, SWT.NONE);
+		lblInizio.setForeground(SWTResourceManager.getColor(SWT.COLOR_CYAN));
+		lblInizio.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_BLUE));
 		lblInizio.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
 		lblInizio.setBounds(10, 188, 55, 15);
 		lblInizio.setText("INIZIO");
 		
 		Label lblNewLabel = new Label(this, SWT.NONE);
+		lblNewLabel.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_BLUE));
+		lblNewLabel.setForeground(SWTResourceManager.getColor(SWT.COLOR_CYAN));
 		lblNewLabel.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
 		lblNewLabel.setBounds(10, 244, 55, 15);
 		lblNewLabel.setText("FINE");
@@ -82,6 +92,8 @@ public class Noleggio extends Shell {
 		comboSocio.setBounds(71, 96, 217, 23);
 		
 		DateTime StringTimeInizio = new DateTime(this, SWT.BORDER);
+		StringTimeInizio.setForeground(SWTResourceManager.getColor(SWT.COLOR_DARK_BLUE));
+		StringTimeInizio.setBackground(SWTResourceManager.getColor(SWT.COLOR_WIDGET_LIGHT_SHADOW));
 		StringTimeInizio.setBounds(98, 179, 80, 24);
 		
 		DateTime StringTimeFine = new DateTime(this, SWT.BORDER);
@@ -105,7 +117,8 @@ public class Noleggio extends Shell {
 			public void widgetSelected(SelectionEvent e) {
 				//inserisco sui combo gli elementi
 				String auto;
-				String Socio;
+				String Socio = "";
+				String confronto;
 				String dataInizio;
 				String dataFine;
 				a.getNoleggi(lista);
@@ -119,8 +132,18 @@ public class Noleggio extends Shell {
 				int v = comboSocio.getSelectionIndex();
 				
 				if(x!=-1 && v!=-1){
-				auto = comboAuto.getText();
-				Socio = comboSocio.getText();
+					auto = comboAuto.getText();
+					
+					String temp = comboSocio.getText();
+					for(int y=0;y<listasoci.size();y++){
+						confronto = listasoci.get(y).getCognome();
+						System.out.println("temp "+ temp +" confronto "+ confronto);
+						//aggiungo
+						if(temp.equals(confronto)){
+							Socio = listasoci.get(y).getCf();
+							System.out.println("entro nel IF");
+						}
+					}
 					Noleggi nol = new Noleggi(auto, Socio, dataInizio, dataFine, false);
 					a.Aggiungi(nol);
 					
@@ -155,7 +178,7 @@ public class Noleggio extends Shell {
 	 * Create contents of the shell.
 	 */
 	protected void createContents() {
-		setText("Noleggio");
+		setText("CARSHARING JACK&ALE&TORRE");
 		setSize(327, 319);
 
 	}

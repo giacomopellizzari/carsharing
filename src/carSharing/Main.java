@@ -60,8 +60,10 @@ public class Main {
 	 */
 	protected void createContents() {
 		shlCarsharing = new Shell();
+		shlCarsharing.setImage(SWTResourceManager.getImage(Main.class, "/resource/carsharing.png"));
+		shlCarsharing.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_CYAN));
 		shlCarsharing.setSize(818, 530);
-		shlCarsharing.setText("Carsharing");
+		shlCarsharing.setText("CARSHARING JACK&ALE&TORRE");
 		
 		ArrayList<Auto> a1 = new ArrayList<Auto>(); 
 		ArrayList<Soci> a2 = new ArrayList<Soci>(); 
@@ -106,6 +108,7 @@ public class Main {
 		list_noleggi.setBounds(10, 263, 207, 149);
 		
 		Button btnNewButton = new Button(shlCarsharing, SWT.NONE);
+		btnNewButton.setForeground(SWTResourceManager.getColor(SWT.COLOR_DARK_MAGENTA));
 		btnNewButton.setFont(SWTResourceManager.getFont("Ebrima", 14, SWT.BOLD | SWT.ITALIC));
 		btnNewButton.setSelection(true);
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
@@ -133,21 +136,29 @@ public class Main {
 		btnNewButton.setText("Refresh");
 		
 		Label lblNewLabel = new Label(shlCarsharing, SWT.NONE);
+		lblNewLabel.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+		lblNewLabel.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_CYAN));
 		lblNewLabel.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
 		lblNewLabel.setBounds(69, 18, 55, 15);
 		lblNewLabel.setText("AUTO");
 		
 		Label lblSoci = new Label(shlCarsharing, SWT.NONE);
+		lblSoci.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_CYAN));
+		lblSoci.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		lblSoci.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
 		lblSoci.setBounds(69, 124, 55, 15);
 		lblSoci.setText("SOCI");
 		
 		Label lblNoleggi = new Label(shlCarsharing, SWT.NONE);
+		lblNoleggi.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+		lblNoleggi.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_CYAN));
 		lblNoleggi.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
 		lblNoleggi.setBounds(69, 242, 55, 15);
 		lblNoleggi.setText("NOLEGGI");
 		
 		Label lblInformazioni = new Label(shlCarsharing, SWT.NONE);
+		lblInformazioni.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+		lblInformazioni.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_CYAN));
 		lblInformazioni.setFont(SWTResourceManager.getFont("Ebrima", 10, SWT.BOLD));
 		lblInformazioni.setBounds(274, 18, 109, 15);
 		lblInformazioni.setText("INFORMAZIONI:");
@@ -196,12 +207,28 @@ public class Main {
 		btnMostraINoleggi.setText("Mostra i noleggi");
 		
 		Label lblDa = new Label(shlCarsharing, SWT.NONE);
+		lblDa.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_CYAN));
+		lblDa.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		lblDa.setBounds(607, 86, 19, 15);
 		lblDa.setText("da");
 		
 		Label lblA = new Label(shlCarsharing, SWT.NONE);
+		lblA.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+		lblA.setBackground(SWTResourceManager.getColor(SWT.COLOR_DARK_CYAN));
 		lblA.setBounds(612, 148, 10, 15);
 		lblA.setText("a");
+		
+		Button btnRestituisci = new Button(shlCarsharing, SWT.BORDER | SWT.FLAT);
+		btnRestituisci.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				Restituisci restituisci = new Restituisci(Display.getDefault());
+				restituisci.open();
+			}
+		});
+		btnRestituisci.setFont(SWTResourceManager.getFont("Ebrima", 15, SWT.BOLD | SWT.ITALIC));
+		btnRestituisci.setBounds(592, 332, 200, 149);
+		btnRestituisci.setText("RESTITUISCI AUTO");
 
 	}
 		private void fai(){

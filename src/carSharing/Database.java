@@ -338,7 +338,6 @@ public class Database {
 				System.out.println("Success");
 				while (rs.next()) {
 					m.nol(rs.getString("codice_noleggio"));
-					
 				}
 			} catch (SQLException e1) {
 				System.out.println("errore:" + e1.getMessage());
