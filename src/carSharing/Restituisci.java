@@ -138,8 +138,11 @@ public class Restituisci extends Shell {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				int x = list.getSelectionIndex();
-				
-				
+				System.out.println(new Date());
+				GregorianCalendar gc = new GregorianCalendar();
+				System.out.println("Giorno: " + gc.get(Calendar.DAY_OF_MONTH) );
+				System.out.println("Mese: " + (gc.get(Calendar.MONTH)+1) );
+				System.out.println("Anno: " + gc.get(Calendar.YEAR) );
 				if (x != -1){
 					for(int y=0;y<lista.size();y++){
 						String confronto =lista.get(y).getSocio()+ "  " + lista.get(y).getAuto()+ "  " + lista.get(y).dataInizio + "  " + lista.get(y).dataFine;
@@ -148,7 +151,7 @@ public class Restituisci extends Shell {
 						if(temp.equals(confronto)){
 							System.out.println(" temp == confronto ");
 							String nol = lista.get(y).getCodNoleggio();
-							DateFormat format = new SimpleDateFormat("yyyy, MM, dd");
+							DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 							
 							Date date_corrente = new Date();
 							format.format(date_corrente);
@@ -157,9 +160,12 @@ public class Restituisci extends Shell {
 							
 							Date date_inizio = new Date();
 							Date date_fine = new Date();
+							
 							try {
+								System.out.println(date_inizio);
 								date_inizio = format.parse(data_inizio);
 								date_fine = format.parse(data_fine);
+								System.out.println(date_inizio);
 							} catch (ParseException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
